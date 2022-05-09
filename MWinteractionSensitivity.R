@@ -98,3 +98,17 @@ for(N in samplSizes){
     }
   }
 }
+
+powerDf3w <- as.data.frame(powerMat3w)
+colnames(powerDf3w) <- c("N","power","diff","diff2")
+powerDf3w$diff <- as.factor(powerDf3w$diff)
+powerDf3w$diff2 <- as.factor(powerDf3w$diff2)
+
+ggplot(powerDf, aes(x=N, y=power, group=diff)) +
+  geom_line(aes(color=diff))+
+  geom_point(aes(color=diff))
+
+ggplot(powerDf3w, aes(N, power, group = interaction(diff, diff2), 
+               color = diff, linetype = diff2)) +
+  geom_line() + geom_point()
+
